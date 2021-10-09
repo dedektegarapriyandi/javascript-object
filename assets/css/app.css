@@ -1,0 +1,63 @@
+.form-box {
+  width: 300px;
+  padding: 2rem;
+  background: white;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+.form-box .form-header {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.form-box .form-group {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.2rem;
+}
+.form-box .form-group .label {
+  padding: 0.3rem 0;
+}
+.form-box .form-group .npm {
+  text-transform: uppercase !important;
+}
+.form-box .form-group .input-form {
+  padding: 0.3rem;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-transform: capitalize;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #212529;
+}
+
+.container {
+  max-width: 1455px;
+  margin: auto;
+  padding: 0 5rem;
+}
+
+.row {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-blue {
+  background-color: #4444ff;
+  border: none;
+  color: white;
+}
+
+/*# sourceMappingURL=app.css.map */

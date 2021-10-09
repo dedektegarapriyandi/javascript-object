@@ -1,0 +1,33 @@
+@use "./components/form";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #212529;
+}
+
+.container {
+    max-width: 1455px;
+    margin: auto;
+    padding: 0 5rem;
+}
+
+.row {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #4444ff;
+    border: none;
+    color: white;
+}
