@@ -1,4 +1,6 @@
+@use  "./variables" as var;
 @use "./components/form";
+@use "./components/table";
 
 * {
     margin: 0;
@@ -16,6 +18,7 @@
 
 .row {
     display: flex;
+    align-items: flex-start;
     margin-top: 2rem;
 }
 
@@ -27,7 +30,17 @@
 }
 
 .btn-blue {
-    background-color: #4444ff;
+    background-color: var.$blue;
     border: none;
+    color: white;
+}
+
+.btn-red {
+    background-color: red;
+    border: none;
+    color: white;
+}
+
+.fa-trash {
     color: white;
 }

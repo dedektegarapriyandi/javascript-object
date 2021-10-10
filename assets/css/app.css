@@ -28,6 +28,27 @@
   text-transform: capitalize;
 }
 
+.table {
+  width: 100%;
+  margin-left: 2rem;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+}
+.table th {
+  background-color: #4444ff;
+  color: white;
+}
+.table tr:nth-child(odd), .table tr:hover {
+  background-color: #ddd;
+}
+.table tr .action {
+  text-align: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -44,6 +65,7 @@
 
 .row {
   display: flex;
+  align-items: flex-start;
   margin-top: 2rem;
 }
 
@@ -57,6 +79,16 @@
 .btn-blue {
   background-color: #4444ff;
   border: none;
+  color: white;
+}
+
+.btn-red {
+  background-color: red;
+  border: none;
+  color: white;
+}
+
+.fa-trash {
   color: white;
 }
 
