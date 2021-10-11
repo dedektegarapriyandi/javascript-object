@@ -11,8 +11,8 @@ function Mahasiswa(npm, nama, jenisKelamin) {
 Mahasiswa.prototype.createTr = (data) => {
     // tr
     const newTr = document.createElement("tr");
-    newTr.innerHTML = `<td>${data.npm}</td>
-                        <td>${data.nama}</td>
+    newTr.innerHTML = `<td class="uppercase">${data.npm}</td>
+                        <td class="capitalize">${data.nama}</td>
                         <td>${data.jenisKelamin}</td>
                         <td class="action">
                             <button class="btn btn-red">
@@ -56,4 +56,17 @@ Mahasiswa.prototype.add = (e) => {
     console.log(newData)
 }
 
+Mahasiswa.prototype.get = () => {
+    if(localStorage.getItem("data") === null) {
+        data = [];
+    }else {
+        data = JSON.parse(localStorage.getItem("data"));
+    }
+
+    data.forEach((val) => {
+        Mahasiswa.prototype.createTr(val);
+    })
+}
+
 submit.addEventListener("click", Mahasiswa.prototype.add);
+window.addEventListener("DOMContentLoaded", Mahasiswa.prototype.get);

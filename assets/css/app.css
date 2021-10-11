@@ -92,4 +92,12 @@
   color: white;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=app.css.map */
