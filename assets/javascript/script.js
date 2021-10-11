@@ -48,6 +48,14 @@ Mahasiswa.prototype.add = (e) => {
         input.value = "";
     });    
     
+    if(npm == "") {
+        return alert("Masukkan NPM");
+    }else if(nama == "") {
+        return alert("Masukkan Nama");
+    } else if(jenisKelamin == "") {
+        return alert("Pilih jenis kelamin")
+    }
+
     const newData = new Mahasiswa(npm, nama, jenisKelamin);
     data.push(newData);
     localStorage.setItem("data", JSON.stringify(data));
