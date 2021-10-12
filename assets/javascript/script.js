@@ -37,8 +37,8 @@ Mahasiswa.prototype.add = (e) => {
 
     inputForm.forEach((input) => {
         if (input.getAttribute("name") == "npm") {
-            for(let i = 0; i < data.length; i++) {
-                if(input.value.toLowerCase() == data[i].npm) {
+            for (let i = 0; i < data.length; i++) {
+                if (input.value.toLowerCase() == data[i].npm) {
                     return alert(`${input.value} sudah ada dalam daftar`);
                 }
             }
@@ -54,45 +54,46 @@ Mahasiswa.prototype.add = (e) => {
 
     if ((npm == "") || (npm == undefined)) {
         return alert("Masukkan NPM yang valid");
-    if (npm == "") {
-        return alert("Masukkan NPM");
-    } else if (nama == "") {
-        return alert("Masukkan Nama");
-    } else if (jenisKelamin == "") {
-        return alert("Pilih jenis kelamin")
+        if (npm == "") {
+            return alert("Masukkan NPM");
+        } else if (nama == "") {
+            return alert("Masukkan Nama");
+        } else if (jenisKelamin == "") {
+            return alert("Pilih jenis kelamin")
+        }
+
+        const newData = new Mahasiswa(npm, nama, jenisKelamin);
+        data.push(newData);
+        localStorage.setItem("data", JSON.stringify(data));
+
+        Mahasiswa.prototype.createTr(newData);
     }
 
-    const newData = new Mahasiswa(npm, nama, jenisKelamin);
-    data.push(newData);
-    localStorage.setItem("data", JSON.stringify(data));
+    Mahasiswa.prototype.get = () => {
+        if (localStorage.getItem("data") === null) {
+            data = [];
+        } else {
+            data = JSON.parse(localStorage.getItem("data"));
+        }
 
-    Mahasiswa.prototype.createTr(newData);
-}
-
-Mahasiswa.prototype.get = () => {
-    if (localStorage.getItem("data") === null) {
-        data = [];
-    } else {
-        data = JSON.parse(localStorage.getItem("data"));
+        data.forEach((val) => {
+            Mahasiswa.prototype.createTr(val);
+        })
     }
 
-    data.forEach((val) => {
-        Mahasiswa.prototype.createTr(val);
-    })
-}
+    Mahasiswa.prototype.delete = (e) => {
+        const deleteBtn = e.target;
+        if (deleteBtn.getAttribute("id") == "delete-btn") {
+            data = JSON.parse(localStorage.getItem("data"));
 
-Mahasiswa.prototype.delete = (e) => {
-    const deleteBtn = e.target;
-    if (deleteBtn.getAttribute("id") == "delete-btn") {
-        data = JSON.parse(localStorage.getItem("data"));
+            const index = deleteBtn.parentElement.parentElement.children[0].innerText.toLowerCase();
 
-        const index = deleteBtn.parentElement.parentElement.children[0].innerText.toLowerCase();
+            if (confirm("Anda yakin ingin menghapus data ini?")) {
+                data.splice(data.indexOf(index), 1);
+                deleteBtn.parentElement.parentElement.remove();
 
-        if (confirm("Anda yakin ingin menghapus data ini?")) {
-            data.splice(data.indexOf(index), 1);
-            deleteBtn.parentElement.parentElement.remove();
-
-            localStorage.setItem("data", JSON.stringify(data));
+                localStorage.setItem("data", JSON.stringify(data));
+            }
         }
     }
 }
