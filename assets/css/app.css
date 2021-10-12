@@ -88,6 +88,10 @@
   color: white;
 }
 
+.fa {
+  pointer-events: none;
+}
+
 .fa-trash {
   color: white;
 }

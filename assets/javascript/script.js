@@ -15,7 +15,7 @@ Mahasiswa.prototype.createTr = (data) => {
                         <td class="capitalize">${data.nama}</td>
                         <td>${data.jenisKelamin}</td>
                         <td class="action">
-                            <button class="btn btn-red">
+                            <button id="delete-btn" class="btn btn-red">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>`
@@ -25,9 +25,9 @@ Mahasiswa.prototype.createTr = (data) => {
 Mahasiswa.prototype.add = (e) => {
     e.preventDefault();
 
-    if(localStorage.getItem("data") === null) {
+    if (localStorage.getItem("data") === null) {
         data = [];
-    }else {
+    } else {
         data = JSON.parse(localStorage.getItem("data"));
     }
 
@@ -36,23 +36,22 @@ Mahasiswa.prototype.add = (e) => {
     let jenisKelamin;
 
     inputForm.forEach((input) => {
-        if(input.getAttribute("name") == "npm") {
+        if (input.getAttribute("name") == "npm") {
             npm = input.value;
-            
-        }else if(input.getAttribute("name") == "nama") {
+
+        } else if (input.getAttribute("name") == "nama") {
             nama = input.value;
-        }
-        else if(input.getAttribute("name") == "jenis-kelamin") {
+        } else if (input.getAttribute("name") == "jenis-kelamin") {
             jenisKelamin = input.value;
         }
         input.value = "";
-    });    
-    
-    if(npm == "") {
+    });
+
+    if (npm == "") {
         return alert("Masukkan NPM");
-    }else if(nama == "") {
+    } else if (nama == "") {
         return alert("Masukkan Nama");
-    } else if(jenisKelamin == "") {
+    } else if (jenisKelamin == "") {
         return alert("Pilih jenis kelamin")
     }
 
@@ -65,9 +64,9 @@ Mahasiswa.prototype.add = (e) => {
 }
 
 Mahasiswa.prototype.get = () => {
-    if(localStorage.getItem("data") === null) {
+    if (localStorage.getItem("data") === null) {
         data = [];
-    }else {
+    } else {
         data = JSON.parse(localStorage.getItem("data"));
     }
 
@@ -76,5 +75,22 @@ Mahasiswa.prototype.get = () => {
     })
 }
 
+Mahasiswa.prototype.delete = (e) => {
+    const deleteBtn = e.target;
+    if (deleteBtn.getAttribute("id") == "delete-btn") {
+        data = JSON.parse(localStorage.getItem("data"));
+
+        const index = deleteBtn.parentElement.parentElement.children[0].innerText.toLowerCase();
+
+        if (confirm("Anda yakin ingin menghapus data ini?")) {
+            data.splice(data.indexOf(index), 1);
+            deleteBtn.parentElement.parentElement.remove();
+
+            localStorage.setItem("data", JSON.stringify(data));
+        }
+    }
+}
+
 submit.addEventListener("click", Mahasiswa.prototype.add);
 window.addEventListener("DOMContentLoaded", Mahasiswa.prototype.get);
+tbody.addEventListener("click", Mahasiswa.prototype.delete);
