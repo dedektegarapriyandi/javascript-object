@@ -15,7 +15,7 @@ Mahasiswa.prototype.createTr = (data) => {
                         <td class="capitalize">${data.nama}</td>
                         <td>${data.jenisKelamin}</td>
                         <td class="action">
-                            <button class="btn btn-red">
+                            <button id="delete-btn" class="btn btn-red">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>`
@@ -54,6 +54,8 @@ Mahasiswa.prototype.add = (e) => {
 
     if ((npm == "") || (npm == undefined)) {
         return alert("Masukkan NPM yang valid");
+    if (npm == "") {
+        return alert("Masukkan NPM");
     } else if (nama == "") {
         return alert("Masukkan Nama");
     } else if (jenisKelamin == "") {
@@ -79,5 +81,22 @@ Mahasiswa.prototype.get = () => {
     })
 }
 
+Mahasiswa.prototype.delete = (e) => {
+    const deleteBtn = e.target;
+    if (deleteBtn.getAttribute("id") == "delete-btn") {
+        data = JSON.parse(localStorage.getItem("data"));
+
+        const index = deleteBtn.parentElement.parentElement.children[0].innerText.toLowerCase();
+
+        if (confirm("Anda yakin ingin menghapus data ini?")) {
+            data.splice(data.indexOf(index), 1);
+            deleteBtn.parentElement.parentElement.remove();
+
+            localStorage.setItem("data", JSON.stringify(data));
+        }
+    }
+}
+
 submit.addEventListener("click", Mahasiswa.prototype.add);
 window.addEventListener("DOMContentLoaded", Mahasiswa.prototype.get);
+tbody.addEventListener("click", Mahasiswa.prototype.delete);
