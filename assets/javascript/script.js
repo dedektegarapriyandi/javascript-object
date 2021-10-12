@@ -25,9 +25,9 @@ Mahasiswa.prototype.createTr = (data) => {
 Mahasiswa.prototype.add = (e) => {
     e.preventDefault();
 
-    if(localStorage.getItem("data") === null) {
+    if (localStorage.getItem("data") === null) {
         data = [];
-    }else {
+    } else {
         data = JSON.parse(localStorage.getItem("data"));
     }
 
@@ -36,23 +36,27 @@ Mahasiswa.prototype.add = (e) => {
     let jenisKelamin;
 
     inputForm.forEach((input) => {
-        if(input.getAttribute("name") == "npm") {
+        if (input.getAttribute("name") == "npm") {
+            for(let i = 0; i < data.length; i++) {
+                if(input.value.toLowerCase() == data[i].npm) {
+                    return alert(`${input.value} sudah ada dalam daftar`);
+                }
+            }
             npm = input.value;
-            
-        }else if(input.getAttribute("name") == "nama") {
+
+        } else if (input.getAttribute("name") == "nama") {
             nama = input.value;
-        }
-        else if(input.getAttribute("name") == "jenis-kelamin") {
+        } else if (input.getAttribute("name") == "jenis-kelamin") {
             jenisKelamin = input.value;
         }
         input.value = "";
-    });    
-    
-    if(npm == "") {
-        return alert("Masukkan NPM");
-    }else if(nama == "") {
+    });
+
+    if ((npm == "") || (npm == undefined)) {
+        return alert("Masukkan NPM yang valid");
+    } else if (nama == "") {
         return alert("Masukkan Nama");
-    } else if(jenisKelamin == "") {
+    } else if (jenisKelamin == "") {
         return alert("Pilih jenis kelamin")
     }
 
@@ -61,13 +65,12 @@ Mahasiswa.prototype.add = (e) => {
     localStorage.setItem("data", JSON.stringify(data));
 
     Mahasiswa.prototype.createTr(newData);
-    console.log(newData)
 }
 
 Mahasiswa.prototype.get = () => {
-    if(localStorage.getItem("data") === null) {
+    if (localStorage.getItem("data") === null) {
         data = [];
-    }else {
+    } else {
         data = JSON.parse(localStorage.getItem("data"));
     }
 
